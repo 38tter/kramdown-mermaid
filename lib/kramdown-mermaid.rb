@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-require_relative "mermaid/version"
+require_relative "kramdown-mermaid/version"
+
+require 'kramdown'
 
 module Kramdown
   module Mermaid

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "kramdown/mermaid"
+require "kramdown-mermaid/kramdown-mermaid-mermaid"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
