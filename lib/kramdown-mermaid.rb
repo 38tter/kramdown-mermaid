@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "kramdown-mermaid/version"
+require_relative 'kramdown-mermaid/version'
 
 require 'kramdown'
 
