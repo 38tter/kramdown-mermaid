@@ -12,7 +12,9 @@ module Kramdown
         @block_parsers.unshift(:entity)
       end
 
-      ER_DIAGRAM_START = /erDiagram[^\n]*(?:%%)?[^\n]*\n/.freeze
+      ER_DIAGRAM = 'erDiagram'
+
+      ER_DIAGRAM_START = /#{ER_DIAGRAM}[^\n]*(?:%%)?[^\n]*\n/.freeze
       ENTITY_START = /[\s\t]*([a-z]*)[\s\t]*\{\n((?:.*\n)+?)[\s\t]*\}/.freeze
 
       def parse_er_diagram
