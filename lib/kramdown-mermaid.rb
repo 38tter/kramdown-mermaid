@@ -9,3 +9,5 @@ module Kramdown
     CATEGORY[:er_diagram] = :block
   end
 end
+
+require 'kramdown-mermaid/parser'
