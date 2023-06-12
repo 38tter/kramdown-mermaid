@@ -13,7 +13,7 @@ module Kramdown
       end
 
       ER_DIAGRAM_START = /erDiagram[^\n]*(?:%%)?[^\n]*\n/.freeze
-      ENTITY_START = /[\s\t]*([a-z]*)[\s\t]*\{\n(.*\n)+?[\s\t]*\}/.freeze
+      ENTITY_START = /[\s\t]*([a-z]*)[\s\t]*\{\n((?:.*\n)+?)[\s\t]*\}/.freeze
 
       def parse_er_diagram
         @src.pos += @src.matched_size
