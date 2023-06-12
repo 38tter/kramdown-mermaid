@@ -14,6 +14,7 @@ module Kramdown
 
       ER_DIAGRAM = 'erDiagram'
       TYPES = %i[bigint int string date datetime boolean references].freeze
+      CONSTRAINTS = %i[PK FK].freeze
 
       ER_DIAGRAM_START = /#{ER_DIAGRAM}[^\n]*(?:%%)?[^\n]*\n/.freeze
       ENTITY_START = /[\s\t]*([a-z]*)[\s\t]*\{\n((?:.*\n)+?)[\s\t]*\}/.freeze
@@ -32,9 +33,19 @@ module Kramdown
         arr = @src[2].split(/\n/).map { |a| a.gsub(/\A\s*/, '').gsub(/\s*\Z/, '') }
         arr.map do |a|
           s = a.split(/\s/)
+
+          type = s[0]
+          name = s[1]
+          constraint = s.length > 2 ? s[2] : nil
+
           raise Kramdown::Error, "Invalid type #{s[0]} for attribute #{s[1]}" unless TYPES.include? s[0].to_sym
 
-          { type: s[0], name: s[1], constraint: s.length > 2 ? s[2] : nil }
+          if constraint && !CONSTRAINTS.include?(constraint.to_sym)
+            raise Kramdown::Error,
+                  "Invalid constraint #{constraint} for attribute #{s[1]}"
+          end
+
+          { type: type, name: name, constraint: constraint }
         end
       end
 
