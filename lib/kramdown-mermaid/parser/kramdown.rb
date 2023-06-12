@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'kramdown/parser/kramdown'
-require 'pry-byebug'
 
 module Kramdown
   module Parser
