@@ -12,7 +12,8 @@ module Kramdown
       end
 
       ER_DIAGRAM = 'erDiagram'
-      TYPES = %i[bigint int string date datetime boolean references].freeze
+      # See https://github.com/rails/rails/blob/984c3ef2775781d47efa9f541ce570daa2434a80/activerecord/lib/active_record/connection_adapters/abstract/schema_definitions.rb#L257-L258
+      TYPES = %i[bigint binary boolean date datetime decimal float integer json string text time timestamp virtual].freeze
       CONSTRAINTS = %i[PK FK].freeze
 
       ER_DIAGRAM_START = /#{ER_DIAGRAM}[^\n]*(?:%%)?[^\n]*\n/.freeze
