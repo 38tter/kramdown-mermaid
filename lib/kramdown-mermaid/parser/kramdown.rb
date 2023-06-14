@@ -13,11 +13,12 @@ module Kramdown
 
       ER_DIAGRAM = 'erDiagram'
       # See https://github.com/rails/rails/blob/984c3ef2775781d47efa9f541ce570daa2434a80/activerecord/lib/active_record/connection_adapters/abstract/schema_definitions.rb#L257-L258
-      TYPES = %i[bigint binary boolean date datetime decimal float integer json string text time timestamp virtual].freeze
+      TYPES = %i[bigint binary boolean date datetime decimal float integer json string text time timestamp
+                 virtual].freeze
       CONSTRAINTS = %i[PK FK].freeze
 
       ER_DIAGRAM_START = /#{ER_DIAGRAM}[^\n]*(?:%%)?[^\n]*\n/.freeze
-      ENTITY_START = /[\s\t]*([a-z\_]*)[\s\t]*\{\n((?:.*\n)+?)[\s\t]*\}/.freeze
+      ENTITY_START = /[\s\t]*([a-z_]*)[\s\t]*\{\n((?:.*\n)+?)[\s\t]*\}/.freeze
 
       def parse_er_diagram
         @src.pos += @src.matched_size
