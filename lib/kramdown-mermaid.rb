@@ -7,6 +7,8 @@ require 'kramdown'
 module Kramdown
   class Element
     CATEGORY[:er_diagram] = :block
+    CATEGORY[:entity] = :block
+    CATEGORY[:relation] = :block
   end
 end
 
