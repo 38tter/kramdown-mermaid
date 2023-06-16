@@ -9,6 +9,7 @@ module Kramdown
         super
         @block_parsers.unshift(:er_diagram)
         @block_parsers.unshift(:entity)
+        @block_parsers.unshift(:relation)
       end
 
       ER_DIAGRAM = 'erDiagram'
@@ -16,6 +17,7 @@ module Kramdown
 
       ER_DIAGRAM_START = /#{ER_DIAGRAM}[^\n]*(?:%%)?[^\n]*\n/.freeze
       ENTITY_START = /[\s\t]*([a-z_]*)[\s\t]*\{\n((?:.*\n)+?)[\s\t]*\}/.freeze
+      RELATION_START = /[\s\t]*([a-z_]*)[\s\t]*([||]--[||])[\s\t]*([a-z_]*)/.freeze
 
       def parse_er_diagram
         @src.pos += @src.matched_size
@@ -58,6 +60,23 @@ module Kramdown
                                       })
       end
       define_parser(:entity, ENTITY_START)
+
+      def parse_relation
+        @src.pos += @src.matched_size
+        start_line_number = @src.current_line_number
+
+        left_entity = @src[1]
+        relation = @src[2]
+        right_entity = @src[3]
+
+        @tree.children << Element.new(:relation, @src.matched, nil, {
+                                        left_entity: left_entity,
+                                        relation: relation,
+                                        right_entity: right_entity,
+                                        location: start_line_number
+                                      })
+      end
+      define_parser(:relation, RELATION_START)
     end
   end
 end
