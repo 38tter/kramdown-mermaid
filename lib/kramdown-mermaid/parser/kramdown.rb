@@ -13,6 +13,7 @@ module Kramdown
       end
 
       ER_DIAGRAM = 'erDiagram'
+      # Regarding to constraints, see https://mermaid.js.org/syntax/entityRelationshipDiagram.html
       CONSTRAINTS = %i[PK FK UK].freeze
 
       ER_DIAGRAM_START = /#{ER_DIAGRAM}[^\n]*(?:%%)?[^\n]*\n/.freeze
