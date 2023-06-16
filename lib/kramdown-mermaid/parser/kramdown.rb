@@ -4,7 +4,7 @@ require 'kramdown/parser/kramdown'
 
 module Kramdown
   module Parser
-    class KramdownErDiagram < ::Kramdown::Parser::Kramdown
+    class KramdownMermaid < ::Kramdown::Parser::Kramdown
       def initialize(source, options)
         super
         @block_parsers.unshift(:er_diagram)
