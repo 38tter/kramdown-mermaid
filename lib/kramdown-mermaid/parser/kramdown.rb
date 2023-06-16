@@ -17,7 +17,7 @@ module Kramdown
 
       ER_DIAGRAM_START = /#{ER_DIAGRAM}[^\n]*(?:%%)?[^\n]*\n/.freeze
       ENTITY_START = /[\s\t]*([a-z_]*)[\s\t]*\{\n((?:.*\n)+?)[\s\t]*\}/.freeze
-      RELATION_START = /[\s\t]*([a-z_]*)[\s\t]*([||]--[||])[\s\t]*([a-z_]*)/.freeze
+      RELATION_START = /[\s\t]*([a-z_]*)[\s\t]*(\|o|\|\||\}o|\}\|)--(o\{|\|\||o\{|\|\{)[\s\t]*([a-z_]*):[\s\t]*".*"[\s\t]*\n/.freeze
 
       def parse_er_diagram
         @src.pos += @src.matched_size
@@ -66,12 +66,14 @@ module Kramdown
         start_line_number = @src.current_line_number
 
         left_entity = @src[1]
-        relation = @src[2]
-        right_entity = @src[3]
+        left_relation = @src[2]
+        right_relation = @src[3]
+        right_entity = @src[4]
 
         @tree.children << Element.new(:relation, @src.matched, nil, {
                                         left_entity: left_entity,
-                                        relation: relation,
+                                        left_relation: left_relation,
+                                        right_relation: right_relation,
                                         right_entity: right_entity,
                                         location: start_line_number
                                       })
