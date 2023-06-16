@@ -12,9 +12,6 @@ module Kramdown
       end
 
       ER_DIAGRAM = 'erDiagram'
-      # See https://github.com/rails/rails/blob/984c3ef2775781d47efa9f541ce570daa2434a80/activerecord/lib/active_record/connection_adapters/abstract/schema_definitions.rb#L257-L258
-      TYPES = %i[bigint binary boolean date datetime decimal float integer json string text time timestamp
-                 virtual references].freeze
       CONSTRAINTS = %i[PK FK UK].freeze
 
       ER_DIAGRAM_START = /#{ER_DIAGRAM}[^\n]*(?:%%)?[^\n]*\n/.freeze
@@ -38,8 +35,6 @@ module Kramdown
           type = s[0]
           name = s[1]
           constraint = s.length > 2 ? s[2] : nil
-
-          raise Kramdown::Error, "Invalid type #{s[0]} for attribute #{s[1]}" unless TYPES.include? s[0].to_sym
 
           if constraint && !CONSTRAINTS.include?(constraint.to_sym)
             raise Kramdown::Error,
