@@ -1,5 +1,7 @@
 # kramdown-mermaid
 
+[![Gem Version](https://badge.fury.io/rb/kramdown-mermaid.svg)](https://badge.fury.io/rb/kramdown-mermaid)
+
 This is a gem for parsing [Mermaid syntax](https://mermaid.js.org/), and is an extension of [kramdown](https://kramdown.gettalong.org/).
 
 Currently, only parsing of [Entity Relationship Diagrams](https://mermaid.js.org/syntax/entityRelationshipDiagram.html) is supported, but we hope to support parsing of Class Diagrams and Sequence Diagrams and more in the future.
