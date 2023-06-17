@@ -2,7 +2,7 @@
 
 This is a gem for parsing mermaid syntax, and is an extension of kramdown.
 
-Currently, only parsing of Entity [Relationship Diagrams](https://mermaid.js.org/syntax/entityRelationshipDiagram.html) is supported, but we hope to support parsing of Class Diagrams and Sequence Diagrams and more in the future.
+Currently, only parsing of [Entity Relationship Diagrams](https://mermaid.js.org/syntax/entityRelationshipDiagram.html) is supported, but we hope to support parsing of Class Diagrams and Sequence Diagrams and more in the future.
 
 ## Installation
 
@@ -20,7 +20,85 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    require 'kramdown'
+    require 'kramdown-mermaid'
+
+    text = <<EOS
+
+    # some title
+    ccc **ddd** eee
+
+    # Image
+    ![Wikimedia](https://en.wikipedia.org/wiki/Wikimedia_Commons#/media/File:Commons-logo-en.svg "Wikimedia")
+
+    some comments
+
+    erDiagram %% some comment
+        hoges {
+            bigint id PK
+            int price
+            date start_on
+            datetime created_at
+            datetime updated_at
+        }
+
+        fugas {
+            bigint id PK
+            int price
+            datetime created_at
+            datetime updated_at
+        }
+
+    hoges |o--o{  fugas: "some comment"** 
+    EOS
+    
+    Kramdown::Document.new(text, input: 'KramdownMermaid').to_hash_ast
+    
+    # => 
+    {:type=>:root,
+    :options=>{:encoding=>#<Encoding:UTF-8>, :location=>1, :options=>{}, :abbrev_defs=>{}, :abbrev_attr=>{}, :footnote_count=>0},
+    :children=>
+    [{:type=>:header,
+    :options=>{:level=>1, :raw_text=>"some title", :location=>1},
+    :children=>[{:type=>:text, :value=>"some title", :options=>{:location=>1}}]},
+    {:type=>:p,
+    :options=>{:location=>2},
+    :children=>
+    [{:type=>:text, :value=>"ccc ", :options=>{:location=>2}},
+    {:type=>:strong, :options=>{:location=>2}, :children=>[{:type=>:text, :value=>"ddd", :options=>{:location=>2}}]},
+    {:type=>:text, :value=>" eee", :options=>{:location=>2}}]},
+    {:type=>:blank, :value=>"\n"},
+    {:type=>:header, :options=>{:level=>1, :raw_text=>"Image", :location=>4}, :children=>[{:type=>:text, :value=>"Image", :options=>{:location=>4}}]},
+    {:type=>:p,
+    :options=>{:location=>5},
+    :children=>
+    [{:type=>:img,
+    :attr=>{"src"=>"https://en.wikipedia.org/wiki/Wikimedia_Commons#/media/File:Commons-logo-en.svg", "alt"=>"Wikimedia", "title"=>"Wikimedia"},
+    :options=>{:location=>5, :ial=>nil}}]},
+    {:type=>:blank, :value=>"\n"},
+    {:type=>:p, :options=>{:location=>7}, :children=>[{:type=>:text, :value=>"some comments", :options=>{:location=>7}}]},
+    {:type=>:blank, :value=>"\n"},
+    {:type=>:er_diagram, :value=>"erDiagram %% some comment \n", :options=>{:location=>10}},
+    {:type=>:p,
+    :options=>{:location=>10},
+    :children=>
+    [{:type=>:text,
+    :value=>"hoges { \n    bigint id PK\n    int price\n    date start_on\n    datetime created_at\n    datetime updated_at\n  }",
+    :options=>{:location=>10}}]},
+    {:type=>:entity,
+    :value=>"  \n  fugas {\n    bigint id PK\n    int price\n    datetime created_at\n    datetime updated_at\n  }",
+    :options=>
+    {:entity=>"fugas",
+    :attributes=>
+    [{:type=>"bigint", :name=>"id", :constraint=>"PK"},
+    {:type=>"int", :name=>"price", :constraint=>nil},
+    {:type=>"datetime", :name=>"created_at", :constraint=>nil},
+    {:type=>"datetime", :name=>"updated_at", :constraint=>nil}],
+    :location=>24}},
+    {:type=>:relation,
+    :value=>"\n\nhoges |o--o{  fugas: \"some comment\"\n",
+    :options=>{:left_entity=>"hoges", :left_relation=>"|o", :right_relation=>"o{", :right_entity=>"fugas", :location=>26}}]}
+
 
 ## Development
 
