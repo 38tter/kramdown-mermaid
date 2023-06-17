@@ -1,6 +1,6 @@
 # kramdown-mermaid
 
-[![Gem Version](https://badge.fury.io/rb/kramdown-mermaid.svg)](https://badge.fury.io/rb/kramdown-mermaid)
+[![Gem Version](https://badge.fury.io/rb/kramdown-mermaid.svg)](https://badge.fury.io/rb/kramdown-mermaid)　<a href="https://codeclimate.com/github/38tter/kramdown-mermaid/maintainability"><img src="https://api.codeclimate.com/v1/badges/62bc2bd699d22771ee7f/maintainability" /></a>
 
 This is a gem for parsing [Mermaid syntax](https://mermaid.js.org/), and is an extension of [kramdown](https://kramdown.gettalong.org/).
 
