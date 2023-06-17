@@ -1,18 +1,22 @@
-# [WIP] Kramdown::Mermaid
+# kramdown-mermaid
 
-This gem is now work in progress.
+This is a gem for parsing mermaid syntax, and is an extension of kramdown.
+
+Currently, only parsing of Entity [Relationship Diagrams](https://mermaid.js.org/syntax/entityRelationshipDiagram.html) is supported, but we hope to support parsing of Class Diagrams and Sequence Diagrams and more in the future.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Add this line to your application's Gemfile:
 
-Install the gem and add to the application's Gemfile by executing:
+    gem 'kramdown-mermaid'
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+And then execute:
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+    $ bundle install
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+Or install it yourself as:
+
+    $ gem install kramdown-mermaid
 
 ## Usage
 
