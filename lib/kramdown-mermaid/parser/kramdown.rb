@@ -4,6 +4,7 @@ require 'kramdown/parser/kramdown'
 
 module Kramdown
   module Parser
+    # An extension of kramdown parser, currently entity and relation diagram is only supported
     class KramdownMermaid < ::Kramdown::Parser::Kramdown
       def initialize(source, options)
         super
