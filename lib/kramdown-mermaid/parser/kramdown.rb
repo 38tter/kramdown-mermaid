@@ -19,7 +19,7 @@ module Kramdown
 
       ER_DIAGRAM_START = /#{ER_DIAGRAM}[^\n]*(?:%%)?[^\n]*\n/.freeze
       ENTITY_START = /[\s\t]*([a-z_]*)[\s\t]*\{\n((?:.*\n)+?)[\s\t]*\}/.freeze
-      RELATION_START = /[\s\t]*([a-z_]*)[\s\t]*(\|o|\|\||\}o|\}\|)--(o\{|\|\||o\{|\|\{)[\s\t]*([a-z_]*):[\s\t]*".*"[\s\t]*\n/.freeze
+      RELATION_START = /[\s\t]*([a-z_]*)[\s\t]*(\|o|\|\||\}o|\}\|)--(o\{|\|\||o\{|\|\{)[\s\t]*([a-z_]*):[\s\t]*".*"[\s\t]*\n/.freeze # rubocop:disable Layout/LineLength
 
       def parse_er_diagram
         @src.pos += @src.matched_size
