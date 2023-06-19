@@ -2,6 +2,6 @@
 
 module Kramdown
   module Parser
-    KRAMDOWN_MERMAID_VERSION = '0.1.1'
+    KRAMDOWN_MERMAID_VERSION = '0.1.2'
   end
 end
