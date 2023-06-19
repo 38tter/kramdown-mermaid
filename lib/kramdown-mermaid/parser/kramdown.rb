@@ -31,6 +31,12 @@ module Kramdown
       end
       define_parser(:er_diagram, ER_DIAGRAM_START)
 
+      def validate_attributes(name, constraint)
+        return unless constraint && !CONSTRAINTS.include?(constraint.to_sym)
+
+        raise Kramdown::Error, "Invalid constraint #{constraint} for attribute #{name}"
+      end
+
       def attributes
         arr = @src[2].split(/\n/).map { |a| a.gsub(/\A\s*/, '').gsub(/\s*\Z/, '') }
         arr.map do |a|
@@ -40,10 +46,7 @@ module Kramdown
           name = s[1]
           constraint = s.length > 2 ? s[2] : nil
 
-          if constraint && !CONSTRAINTS.include?(constraint.to_sym)
-            raise Kramdown::Error,
-                  "Invalid constraint #{constraint} for attribute #{s[1]}"
-          end
+          validate_attributes(name, constraint)
 
           { type: type, name: name, constraint: constraint }
         end
