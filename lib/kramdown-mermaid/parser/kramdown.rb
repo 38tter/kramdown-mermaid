@@ -66,7 +66,7 @@ module Kramdown
       end
       define_parser(:entity, ENTITY_START)
 
-      def parse_relation
+      def parse_relation # rubocop:disable Metrics/MethodLength
         @src.pos += @src.matched_size
         start_line_number = @src.current_line_number
 
@@ -75,13 +75,11 @@ module Kramdown
         right_relation = @src[3]
         right_entity = @src[4]
 
-        @tree.children << Element.new(:relation, @src.matched, nil, {
-                                        left_entity: left_entity,
-                                        left_relation: left_relation,
-                                        right_relation: right_relation,
-                                        right_entity: right_entity,
-                                        location: start_line_number
-                                      })
+        @tree.children << Element.new(:relation, @src.matched, nil, { left_entity: left_entity,
+                                                                      left_relation: left_relation,
+                                                                      right_relation: right_relation,
+                                                                      right_entity: right_entity,
+                                                                      location: start_line_number })
       end
       define_parser(:relation, RELATION_START)
     end

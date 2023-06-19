@@ -3,7 +3,7 @@
 require 'kramdown-mermaid/parser/kramdown'
 require 'kramdown'
 
-describe Kramdown::Parser::KramdownMermaid do
+describe Kramdown::Parser::KramdownMermaid do # rubocop:disable Metrics/BlockLength
   context 'when parsing a simple block including erDiagram' do
     it 'coverts to hash ast' do
       ast = Kramdown::Document.new("erDiagram %% some comments\n", input: 'KramdownMermaid').to_hash_ast
@@ -38,8 +38,8 @@ describe Kramdown::Parser::KramdownMermaid do
   context 'when parsing a complex document' do # rubocop:disable Metrics/BlockLength
     let(:with_mermaid_src) { IO.read(File.expand_path('../../fixtures/with_mermaid.md', __dir__)) }
 
-    context 'with mermaid' do
-      it 'converts to ast' do
+    context 'with mermaid' do # rubocop:disable Metrics/BlockLength
+      it 'converts to ast' do # rubocop:disable Metrics/BlockLength
         ast = Kramdown::Document.new(with_mermaid_src, input: 'KramdownMermaid').to_hash_ast
         expect(ast[:children]).to eq(
           [{ type: :header, options: { level: 1, raw_text: 'some title', location: 1 },
@@ -89,9 +89,9 @@ describe Kramdown::Parser::KramdownMermaid do
            { type: :er_diagram, value: "erDiagram %% some comment \n",
              options: { location: 17 } },
            { type: :p, options: { location: 17 },
-             children: [{ type: :text, value: "hoges { \n    bigint id PK\n    int price\n    date start_on\n    datetime created_at\n    datetime updated_at\n  }", options: { location: 17 } }] },
+             children: [{ type: :text, value: "hoges { \n    bigint id PK\n    int price\n    date start_on\n    datetime created_at\n    datetime updated_at\n  }", options: { location: 17 } }] }, # rubocop:disable Layout/LineLength
            { type: :entity,
-             value: "  \n  fugas {\n    bigint id PK\n    int price\n    datetime created_at\n    datetime updated_at\n  }",
+             value: "  \n  fugas {\n    bigint id PK\n    int price\n    datetime created_at\n    datetime updated_at\n  }", # rubocop:disable Layout/LineLength
              options: { entity: 'fugas',
                         attributes: [{ type: 'bigint', name: 'id', constraint: 'PK' },
                                      { type: 'int', name: 'price', constraint: nil },
