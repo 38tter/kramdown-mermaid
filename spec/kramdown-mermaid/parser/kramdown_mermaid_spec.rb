@@ -35,7 +35,7 @@ describe Kramdown::Parser::KramdownMermaid do
     end
   end
 
-  context 'when parsing a complex document' do
+  context 'when parsing a complex document' do # rubocop:disable Metrics/BlockLength
     let(:with_mermaid_src) { IO.read(File.expand_path('../../fixtures/with_mermaid.md', __dir__)) }
 
     context 'with mermaid' do
